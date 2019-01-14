@@ -63,6 +63,14 @@ class MeanCircle extends Shape {
       _this.x = e.clientX;
       _this.y = e.clientY;
     };
+    window.ontouchstart = e => {
+      _this.x = e.clientX;
+      _this.y = e.clientY;
+    };
+    window.ontouchmove = e => {
+      _this.x = e.clientX;
+      _this.y = e.clientY;
+    };
     /*
     window.onkeydown = function(e) {
       // a key
