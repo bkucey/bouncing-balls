@@ -4,9 +4,18 @@ var ballcounter = document.querySelector("p");
 ballcounter.textContent = "Ball Count:" + ballcount;
 var canvas = document.querySelector("canvas");
 var ctx = canvas.getContext("2d");
+var sound = document.querySelector("audio");
 
 var width = (canvas.width = window.innerWidth);
 var height = (canvas.height = window.innerHeight);
+
+function setWindow() {
+  width = canvas.width = window.innerWidth;
+  height = canvas.height = window.innerHeight;
+}
+
+window.onresize = setWindow;
+var promisetodo; //holds the fart sound
 
 // function to generate random number
 
@@ -99,6 +108,8 @@ class MeanCircle extends Shape {
         var distance = Math.sqrt(dx * dx + dy * dy);
 
         if (distance < this.size + balls[j].size) {
+          promisetodo = sound.play();
+          promisetodo.catch();
           balls[j].exists = false;
           ballcount--;
           ballcounter.textContent = "Ball Count:" + ballcount;
@@ -128,20 +139,36 @@ class Ball extends Shape {
   // define ball update method
 
   update() {
-    if (this.x + this.size >= width) {
-      this.velX = -this.velX;
+    if (this.x + this.size >= width && this.velX >= 0) {
+      if (this.velX) {
+        this.velX = -this.velX;
+      } else {
+        this.x = width;
+      }
     }
 
-    if (this.x - this.size <= 0) {
-      this.velX = -this.velX;
+    if (this.x - this.size <= 0 && this.velX <= 0) {
+      if (this.velX) {
+        this.velX = -this.velX;
+      } else {
+        this.x = 0;
+      }
     }
 
-    if (this.y + this.size >= height) {
-      this.velY = -this.velY;
+    if (this.y + this.size >= height && this.velY >= 0) {
+      if (this.velY) {
+        this.velY = -this.velY;
+      } else {
+        this.y = height;
+      }
     }
 
-    if (this.y - this.size <= 0) {
-      this.velY = -this.velY;
+    if (this.y - this.size <= 0 && this.velY <= 0) {
+      if (this.velY) {
+        this.velY = -this.velY;
+      } else {
+        this.y = 0;
+      }
     }
 
     this.x += this.velX;
