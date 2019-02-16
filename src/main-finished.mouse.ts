@@ -86,7 +86,7 @@ class MeanCircle extends Shape {
       e.stopImmediatePropagation();
       e.preventDefault();
       this.x = e.touches[0].clientX;
-      this.y = e.touches[1].clientY;
+      this.y = e.touches[0].clientY;
     };
     /*
     window.onkeydown = function(e) {
