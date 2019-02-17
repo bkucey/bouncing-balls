@@ -30,7 +30,13 @@ class Shape {
   velX: number;
   velY: number;
   exists: boolean;
-  constructor(x, y, velX, velY, exists) {
+  constructor(
+    x: number,
+    y: number,
+    velX: number,
+    velY: number,
+    exists: boolean
+  ) {
     this.x = x;
     this.y = y;
     this.velX = velX;
@@ -38,7 +44,6 @@ class Shape {
     this.exists = exists;
   }
 }
-
 class MeanCircle extends Shape {
   color;
   size: number;
@@ -116,8 +121,7 @@ class MeanCircle extends Shape {
         var distance = Math.sqrt(dx * dx + dy * dy);
 
         if (distance < this.size + balls[j].size) {
-          promisetodo = sound.play();
-          promisetodo.catch();
+          sound.play();
           balls[j].exists = false;
           ballcount--;
           ballcounter.textContent = "Ball Count:" + ballcount;

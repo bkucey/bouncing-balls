@@ -81,7 +81,7 @@ var MeanCircle = /** @class */ (function (_super) {
             e.stopImmediatePropagation();
             e.preventDefault();
             _this.x = e.touches[0].clientX;
-            _this.y = e.touches[1].clientY;
+            _this.y = e.touches[0].clientY;
         };
         /*
         window.onkeydown = function(e) {
@@ -109,8 +109,7 @@ var MeanCircle = /** @class */ (function (_super) {
                 var dy = this.y - balls[j].y;
                 var distance = Math.sqrt(dx * dx + dy * dy);
                 if (distance < this.size + balls[j].size) {
-                    promisetodo = sound.play();
-                    promisetodo["catch"]();
+                    sound.play();
                     balls[j].exists = false;
                     ballcount--;
                     ballcounter.textContent = "Ball Count:" + ballcount;
